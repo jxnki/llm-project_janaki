@@ -1,7 +1,5 @@
 ## llm-project_janaki
 
-This project has two tasks: a chatbot that runs in the terminal and a web chatbot that can answer questions from PDF files.
-
 ## Task 1: CLI Chatbot
 
 ### Problem
@@ -45,7 +43,6 @@ python chat.py
 ```
 
 Type your messages. Type `exit` to quit.
-
 
 ## Task 2: Web-Based PDF Chatbot
 
@@ -200,5 +197,4 @@ streamlit run app.py
 - langchain - Handle documents and embeddings
 - chromadb - Store embeddings
 - streamlit - Web interface
-- transformers - Create embeddings
 - pypdf - Read PDF files
