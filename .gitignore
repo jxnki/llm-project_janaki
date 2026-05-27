@@ -1,0 +1,10 @@
+__pycache__/
+.env
+*.pyc
+.venv/
+
+chroma_db/
+rag_log.txt
+.vscode/
+*.log
+venv/

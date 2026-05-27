@@ -1,0 +1,99 @@
+Task 2: RAG-Based PDF Chatbot
+
+==================================================
+
+PROBLEM
+
+The task was to build a web-based chatbot that can answer questions based on PDF 
+documents. Instead of just giving generic answers, the chatbot should find relevant 
+information from the PDFs and use that to answer user questions accurately.
+
+==================================================
+
+APPROACH
+
+Built a RAG (Retrieval Augmented Generation) system using:
+- Streamlit (for the web interface)
+- LangChain (for handling the RAG pipeline)
+- Chroma (to store document embeddings)
+- HuggingFace (for creating embeddings)
+- Groq API (to generate responses)
+
+How it works:
+1. Load PDFs and split them into chunks
+2. Convert chunks to embeddings (numerical representations)
+3. Store embeddings in a database
+4. When user asks a question, find similar chunks
+5. Send those chunks to the LLM to generate an answer
+
+==================================================
+
+STEPS TAKEN
+
+1. Set up RAG Pipeline (rag.py)
+   - Loaded PDFs using LangChain
+   - Split documents into 500-character chunks
+   - Created embeddings using HuggingFace model
+   - Stored embeddings in Chroma database
+   - Built ask_rag() function to retrieve chunks and get responses
+
+2. Built Web Interface (app.py)
+   - Created Streamlit app with chat interface
+   - Added session state to remember conversation history
+   - Made expandable sections to show retrieved chunks
+   - Added styling with wide layout
+
+3. Organized Files
+   - Created Sample PDFs/ folder
+   - Moved notes.pdf, notes2.pdf, notes3.pdf there
+   - Updated file paths in rag.py
+
+4. Added Logging
+   - Set up rag_log.txt to track queries and responses
+   - Helps debug and understand what the system is doing
+
+==================================================
+
+CHALLENGES FACED
+
+Challenge 1: Session State in Streamlit
+- Problem: Chat history disappeared every time the page reloaded
+- Solution: Used st.session_state to keep messages even after page refresh
+
+Challenge 2: Database Performance
+- Problem: Creating embeddings from PDFs took too long (15-20 seconds)
+- Solution: Save embeddings to disk so we only have to do it once
+
+Challenge 3: Understanding Vector Similarity
+- Problem: Didn't understand why certain chunks got retrieved
+- Solution: Realized embeddings capture meaning, not just keywords
+
+==================================================
+
+HOW RETRIEVAL WORKS
+
+Step by step:
+
+1. PDF files are loaded and split into chunks (500 characters each)
+2. Each chunk is converted to an embedding (a vector)
+3. All vectors are stored in Chroma database
+4. When user asks a question, it gets converted to a vector too
+5. System finds the 3 most similar vectors in the database
+6. Those chunks are retrieved and sent to the LLM as context
+7. LLM reads the context and answers the question
+8. Both the answer and source chunks are shown to user
+
+==================================================
+
+POSSIBLE IMPROVEMENTS
+
+- Add a similarity filter to only use good matches
+- Make the system retrieve more chunks for complex questions
+- Support other file types like Word docs and text files
+- Add keyword search along with semantic search
+- Show how confident the system is about each chunk
+- Cache answers to common questions
+- Let users rate if answers are helpful
+- Show which PDF each chunk came from
+
+==================================================

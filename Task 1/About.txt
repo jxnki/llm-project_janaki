@@ -1,0 +1,159 @@
+Task 1
+
+PROBLEM
+
+The goal of this project is to create a simple interactive AI chat application using the Groq API and the model llama-3.1-8b-instant.
+The chatbot accepts user input, sends it to the AI model, and displays responses in the terminal while maintaining conversation history.
+
+--------------------------------------------------
+
+APPROACH
+
+This project was built using Python and the Groq Python SDK.
+
+The chatbot works by:
+- Taking user input from the terminal
+- Sending the conversation to the Groq API
+- Receiving the AI response
+- Printing the response in the terminal
+- Storing previous messages in a list to maintain conversation memory
+
+A system prompt was also added to define the assistant’s behavior.
+
+--------------------------------------------------
+
+STEPS TAKEN
+
+- Created a Python virtual environment
+- Installed required libraries:
+  - groq
+  - python-dotenv
+- Created a Groq client using the API key
+- Built a basic chat application using the Groq Chat Completions API
+- Added multi-turn conversation support using a messages list
+- Added a system message:
+  "You are a friendly assistant that explains things clearly."
+- Used a .env file to securely store the API key
+- Added .gitignore to avoid uploading sensitive files
+
+--------------------------------------------------
+
+CHALLENGES FACED
+
+1. Deprecated Model Issue
+
+The model mentioned in the task:
+llama3-8b-8192
+
+was deprecated and unavailable during implementation.
+
+To solve this issue, the model was replaced with:
+llama-3.1-8b-instant
+
+which successfully worked with the Groq API.
+
+2. Understanding Conversation Memory
+
+Initially, understanding how the chatbot remembers previous messages was confusing.
+
+This was solved by storing all user and assistant messages inside a list and sending the complete conversation history to the API every time.
+
+--------------------------------------------------
+
+PROJECT STRUCTURE
+
+project_folder/
+|
+|-- chat.py
+|-- requirements.txt
+|-- .gitignore
+|-- README.md
+|-- .env
+
+--------------------------------------------------
+PREREQUISITE
+
+Make sure Python 3.10 or higher is installed on your system.
+
+Download Python from the official website
+
+To verify installation, run:
+
+python --version
+or
+python3 --version
+
+--------------------------------------------------
+
+HOW TO RUN THE PROJECT
+
+1. Create a Virtual Environment
+
+Windows:
+
+python -m venv .venv
+.venv\Scripts\activate
+
+macOS / Linux:
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+--------------------------------------------------
+
+2. Install Required Libraries
+
+pip install -r requirements.txt
+
+--------------------------------------------------
+
+3. Create a .env File
+
+Create a file named:
+
+.env
+
+Add your Groq API key:
+
+GROQ_API_KEY=your_actual_api_key
+
+--------------------------------------------------
+
+4. Run the Chatbot
+
+python chat.py
+
+--------------------------------------------------
+
+EXIT THE CHAT
+
+Type:
+
+exit
+
+to stop the chatbot.
+
+--------------------------------------------------
+
+FILES
+
+chat.py
+- Main chatbot application
+
+requirements.txt
+- Required Python dependencies
+
+.env
+- Stores the API key locally
+
+.gitignore
+- Prevents sensitive files from being uploaded
+
+--------------------------------------------------
+
+TECHNOLOGIES USED
+
+- Python
+- Groq API
+- llama-3.1-8b-instant
+- python-dotenv
